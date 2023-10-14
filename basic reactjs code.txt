@@ -1,0 +1,85 @@
+// Dashboard.js
+import React from 'react';
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import Profile from './Profile';
+import Settings from './Settings';
+
+function Dashboard() {
+  const { path, url } = useRouteMatch();
+
+  return (
+    <div>
+      <h2>Employee Dashboard</h2>
+      <ul>
+        <li>
+          <Link to={`${url}/profile`}>Profile</Link>
+        </li>
+        <li>
+          <Link to={`${url}/settings`}>Settings</Link>
+        </li>
+      </ul>
+
+      <Switch>
+        <Route exact path={path}>
+          <h3>Welcome to your dashboard!</h3>
+        </Route>
+        <Route path={`${path}/profile`}>
+          <Profile />
+        </Route>
+        <Route path={`${path}/settings`}>
+          <Settings />
+        </Route>
+      </Switch>
+    </div>
+  );
+}
+
+export default Dashboard;
+
+
+// Profile.js
+import React from 'react';
+
+function Profile() {
+  return (
+    <div>
+      <h3>Employee Profile</h3>
+      {/* Add your profile content here */}
+    </div>
+  );
+}
+
+export default Profile;
+
+
+// Settings.js
+import React from 'react';
+
+function Settings() {
+  return (
+    <div>
+      <h3>Employee Settings</h3>
+      {/* Add your settings content here */}
+    </div>
+  );
+}
+
+export default Settings;
+
+
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+
+function App() {
+  return (
+    <Router>
+      <div>
+        <Route path="/dashboard" component={Dashboard} />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
